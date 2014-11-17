@@ -26,21 +26,39 @@ void ofApp::setup(){
     
 //    posX = ofRandom((ofGetWindowWidth()/6)*-1, 0);
 //    posY = ;
+
+    //define j = 0 to start off with
+    int j = 0;
     
-    //populate vector with existing data from XML file
-    for (int i = 0; i < numNoise; i++) {
-        //point to current noise_objects/noise[i]
+    //populate vector with existing data from XML file until you reach desired number of objects
+    for (int i = 0; i < 207; i++) {
+        
+       
+        //point to current noise_objects/noise[j] with j starting at 0
         noise.setToChild(i);
+        //get value at index number j
         string s = noise.getValue();
-        //set XML file pointer to next sibling node
-        noise.setToSibling();
+        cout << s << endl;
+        
         //make a new NoiseObjects instance
-        NoiseObjects newNoise(0, ofRandom(0, ofGetWindowHeight()), s);
+        NoiseObjects newNoise(ofRandom(0, ofGetWindowWidth()), ofRandom(0, ofGetWindowHeight()), s);
         //push back to noiseCollection vector
         noiseCollection.push_back(newNoise);
+        
+        j++;
+        
+        //x represents whether the current i we're on is a multiple of numnoise (the % is a modulo operator)
+            int x = i % numNoise;
+            //cout << x << endl;
+            //if it is a multiple (i.e. no remainder), then reset j to 0
+            if (x == 0) {
+                j = 0;
+                noise.setToSibling();
+            }
+        
+        
+        
     }
-    
-    
 }
 
 //--------------------------------------------------------------

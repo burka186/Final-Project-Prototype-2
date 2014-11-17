@@ -27,6 +27,9 @@ NoiseObjects::NoiseObjects(float mX, float mY, string mText) {
     currTime = time;
     
     color = ofRandom(255);
+    
+    //relates to overall punch threshhold 
+    resistance = ofRandom(100, 200);
 }
 
 
@@ -43,7 +46,7 @@ void NoiseObjects::update() {
     }
 
     currTime --;
-    cout << currTime << endl;
+    //cout << currTime << endl;
     if(currTime < 0){
         pos.set(ofRandom(ofGetWidth()), ofGetHeight());
         fontSize = ofRandom(8, 44);
@@ -52,7 +55,7 @@ void NoiseObjects::update() {
         
     }else{
         color = ofMap(currTime, 0, time, 0, 255);
-        cout << color << endl;
+        //cout << color << endl;
         
     }
     

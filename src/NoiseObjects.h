@@ -22,6 +22,8 @@ public:
     
         void update();
         void render();
+        //physics function
+        void addForce();
     
     //text that's getting drawn to the screen
     string text;
@@ -37,4 +39,7 @@ public:
     
     ofVec2f pos;
     ofVec2f vel;
+    
+    //how easy are they to destroy?
+    float resistance;
 };
